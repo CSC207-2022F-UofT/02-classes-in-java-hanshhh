@@ -81,6 +81,15 @@ public class Silly implements Comparable<Silly>{
      */
 
 
+    /**
+     * Creates a new Silly object.
+     * This constructor takes in two Strings as arguments.
+     *
+     * @param str1 the string for the first half of this Silly instance's name.
+     * @param str2 the string for the second half for this Silly instance's name.
+     */
+    public Silly(String str1, String str2){ this.name = str1 + str2; }
+
 
 
 
@@ -116,7 +125,7 @@ public class Silly implements Comparable<Silly>{
         y.countStatic();
         x.countStatic();
         x.countStatic();
-        int[] expected_values = {};
+        int[] expected_values = {0, 1, 2, 3};
 
         System.out.println("The countStatic calls will return " + Arrays.toString(expected_values));
     }
@@ -133,7 +142,7 @@ public class Silly implements Comparable<Silly>{
      */
     @Override
     public String toString(){
-        // TODO (Task 3): Implement the body of this method!
+        return this.name;
     }
 
     /**
@@ -153,6 +162,12 @@ public class Silly implements Comparable<Silly>{
          *                We've started it by checking the type of o for you.
          *                You just need to return true if the names are equal.
          */
+        if (this == o){
+            return true;
+        }
+        if (o == null){
+            return false;
+        }
         if (!(o instanceof Silly)){
             return false;
         }
@@ -161,6 +176,14 @@ public class Silly implements Comparable<Silly>{
 
         // Hint: to compare strings, we need to use .equals()
         //       e.g. s1.equals(s2)
+        if (this.name == null){
+            if (other.name != null){
+                return false;
+            }
+        } else if (!this.name.equals(other.name)){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -194,6 +217,13 @@ public class Silly implements Comparable<Silly>{
          *                You can get the length of a string by using the
          *                .length() method.
          */
+        if (this.name.length() < other.name.length()){
+            return -1;
+        } else if (this.name.length() > other.name.length()){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /*
